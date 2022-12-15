@@ -1,0 +1,59 @@
+name: "FEATURE REQUEST 💌🎁"
+description: "기능 및 로직을 추가 및 개선합니다!"
+title: "[💌 FEATURE REQUEST] "
+labels: ["📙 NOT READ"]
+
+body:
+- type: markdown
+  attributes:
+    value: "바쁘신 와중에 기능을 제안해주셔서 감사드려요!"
+- type: markdown
+  attributes:
+    value: "잠시 몇 가지 질문을 드릴까 해요. 답변을 채워주시고 이슈를 올려주시면, 확인 후 답변 드릴게요!"
+
+- type: checkboxes
+  id: "checks"
+  attributes:
+    label: "멈춰! 🖐🏻 잠시 체크 들어갑니다~"
+    options:
+    - label: "[다음 페이지](https://github.com/seeyouletter/seeyouletter-fe/issue)에서 중복되지 않음을 확인했어요. 🙆🏻"
+      required: true
+    - label: "다른 분들께서 허락해주신다면, 제가 구현해보고 싶어요! 🙆🏻‍♀️"
+      required: false
+    
+- type: textarea
+  id: "description"
+  attributes:
+    label: "배경 및 설명"
+    description: "어떤 이유로 다음 이슈를 요청하신 건지 말씀해주실 수 있으신가요? 🙇🏻‍♂️🙇‍♀️"
+  validations:
+    required: true
+
+- type: textarea
+  id: "expected-result"
+  attributes:
+    label: "기대결과"
+    description: "이를 통해 어떤 결과를 기대할 수 있을까요?"
+    placeholder: "예시) 1. 사용자는 로그인 화면상에서 회원가입 버튼을 볼 수 있다."
+  validations:
+    required: true
+
+- type: textarea
+  id: "alternative"
+  attributes:
+    label: "대안 제시"
+    description: "혹시 이 요청에 관해 생각하시는 방법 및 대안이 있으실까요?"
+    placeholder: |
+      "예시는 다음과 같아요."
+      "1. 사용자는 로그인 화면상에서 회원가입 버튼을 볼 수 있다."
+      "2. 사용자는 회원가입 버튼을 누르면 회원가입 페이지로 이동할 수 있어야 한다."
+  validations:
+    required: false
+
+- type: textarea
+  id: "reference"
+  attributes:
+    label: "참고자료"
+    description: "요청에 대한 이해를 좀 더 쉽게 할 수 있을 예시를 첨부해주세요! 🙇🏻‍♂️🙇‍♀️"
+  validations:
+    required: false

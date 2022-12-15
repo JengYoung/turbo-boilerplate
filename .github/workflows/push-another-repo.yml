@@ -1,0 +1,37 @@
+# Vercel cannot support organization repo deploy in hobby account.
+# So I make workflow to push another repo to deploy to Vercel
+
+name: PushAnotherRepo
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  push_another_repository:
+    if: github.repository == 'seeyouletter/seeyouletter-fe'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install pnpm
+        run: npm i pnpm@latest -g
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Check build for deploy in stable 
+        run: pnpm build
+      
+      - run: rm -rf .git
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: .
+          destination-github-username: JengYoung
+          destination-repository-name: seeyouletter-fe
+          user-email: young_pallete@naver.com
+          destination-directory: .
+          

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "lint": {
+      "outputs": [],
+      "inputs": []
+    },
+    "stylelint": {
+      "outputs": [],
+      "inputs": []
+    },
+    "build": {
+      "dependsOn": ["^build", "build-storybook"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "build-storybook": {
+      "outputs": ["storybook-static/**"]
+    },
+    "storybook": {
+      "dependsOn": ["build-storybook"],
+      "cache": false
+    }
+  },
+  "remoteCache": {
+    "signature": true
+  }
+}

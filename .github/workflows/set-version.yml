@@ -1,0 +1,45 @@
+name: SetVersionsByChangesets
+
+on:
+  push:
+    branches: ['main']
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+
+jobs:
+  release:
+    if: github.repository == 'seeyouletter/seeyouletter-fe'
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: webfactory/ssh-agent@v0.7.0
+        with:
+            ssh-private-key: ${{ secrets.SSH_AGENT_PRIVATE_KEY }}
+
+      - name: install pnpm
+        run: npm i pnpm@latest -g
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          version: pnpm ci:version
+          commit: "chore(versioning): update versions"
+          title: "chore(versioning): update versions"
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
+          

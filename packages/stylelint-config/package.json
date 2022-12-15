@@ -1,0 +1,27 @@
+{
+  "name": "stylelint-config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.38.0",
+    "postcss": "^8.4.20",
+    "postcss-syntax": "^0.36.2",
+    "prettier": "^2.8.1",
+    "stylelint": "^14.16.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-recommended-scss": "^8.0.0",
+    "stylelint-prettier": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.38.0",
+    "prettier": "^2.8.1"
+  }
+}

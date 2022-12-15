@@ -1,0 +1,12 @@
+---
+blank_issues_enabled: true
+contact_links:
+  - about: "서버쪽의 문제가 의심되시나요? 다음 레포지토리에서 이슈를 남겨주세요 🙌"
+    name: "Backend Repository"
+    url: "https://github.com/withfig/autocomplete/issues/new/choose"
+  - about: "필요한 사항들은 언제든지 메일로 보내주세요. 요청을 최대한 도와드릴게요 🙆🏻🙆🏻‍♀️"
+    name: "📩 Email"
+    url: "https://tinyurl.com/seeyouletter-report"
+  - about: "만약 문제가 발생하는 거라면, 같은 이슈가 있는지 확인할 수 있어요! 🫶🏻"
+    name: "💬 Now Seeyouletter's Issues"
+    url: "https://github.com/seeyouletter/seeyouletter-fe/issues"

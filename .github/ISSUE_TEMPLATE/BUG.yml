@@ -1,0 +1,87 @@
+name: "BUG 🐛🔥"
+description: "버그 해결을 요청해요!"
+title: "[🐛 BUG] "
+labels: ["🐛 BUG", "📙 NOT READ"]
+
+body:
+  - type: markdown
+    attributes:
+      value: "바쁘신 와중에 버그를 제보해주셔서 감사드려요!"
+  - type: markdown
+    attributes:
+      value: "잠시 몇 가지 질문을 드릴까 해요. 답변을 채워주시고 이슈를 올려주시면, 확인 후 답변 드릴게요!"
+
+  - type: checkboxes
+    id: "checks"
+    attributes:
+      label: "멈춰! 🖐🏻 잠시 체크 들어갑니다~"
+      options:
+      - label: "[다음 페이지](https://github.com/seeyouletter/seeyouletter-fe/issue)에서 중복되지 않음을 확인했어요. 🙆🏻"
+        required: true
+      - label: "데이터나 서버 쪽 문제일 경우, [백엔드 레포지토리](https://github.com/seeyouletter/seeyouletter-be)도 확인해보셨나요?"
+        required: true
+      - label: "사안을 볼 때 매우 위험해요. 빠른 수정이 필요해요! 😖"
+        required: false
+
+  - type: dropdown
+    attributes:
+      label: "현재 버그는 어떤 주제인가요? (필수)"
+      multiple: true
+      options:
+        - 'Web'
+        - 'Admin'
+        - 'Storybook'
+        - '화면 조작 및 페이지 이동'
+        - '회원 인증 관련'
+        - 'Build'
+        - 'CI/CD'
+        - 'API'
+        - '3rd party libraries'
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 🎬 문제 재현
+      description: "현재 버그는 다음과 같은 상황일 때 재현될 수 있어요."
+      placeholder: |
+        1. 로그인 페이지로 이동한다.
+        2. 회원가입 버튼을 누른다.
+        3. 원래라면 나와야 할 회원가입 페이지 대신 404 페이지가 나온다.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "버그 설명"
+      description: "😭 아직 저희는 버그에 대해 정확히 모르는 상황이에요. 구체적으로 설명해주실 수 있으실까요?"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "예상 결과"
+      description: "결과적으로 해결된다면, 어떤 결과가 나와야 할까요?"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        명확히 설명해주실수록 저희가 좀 더 빠르고 정확히 해결할 수 있어요! 🙆🏻🙆🏻‍♀️
+        번거로우시더라도, 조금만 양해해주시길 바라며, 자세한 설명 부탁드릴게요.
+        다시는 이러한 일이 발생하지 않도록 노력하겠습니다 :) 🫶🏻
+
+  - type: input
+    attributes:
+      label: "디바이스 환경"
+      description: "정확한 버전일 수록 좋아요."
+      placeholder: "ex) Chrome 100.0.4878.0 / SAMSUNG Galaxy S22"
+    validations:
+      required: false
+
+  - type: input
+    attributes:
+      label: "🌱 브랜치 입력(개발 작업 중인 경우)"
+      description: "문제가 발생했던 브랜치 이름을 제게 알려주세요!"
+    validations:
+      required: false
