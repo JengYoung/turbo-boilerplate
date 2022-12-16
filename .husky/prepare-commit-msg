@@ -2,4 +2,9 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo "🚦 PREPARE-COMMIT-MSG | Start cz with cz-customizable..."
-exec < /dev/tty && pnpm cz --hook || true
+
+# $2: catch if commit msg already exist.
+if [ -z "${2}" ]; then
+  # exec < /dev/tty: need to exec commitizen when using git hooks
+  exec < /dev/tty && pnpm cz --hook || true
+fi
