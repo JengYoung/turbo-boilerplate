@@ -1,0 +1,63 @@
+name: Changesets
+
+on:
+  pull_request_target:
+    branches: ['main']
+    types:
+      - closed
+    paths:
+      - '**/CHANGELOG.md'
+      - '.changeset/**.md'
+      - '**/package.json'
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+
+jobs:
+  release:
+    if: >-
+      ${{
+        github.repository == 'seeyouletter/seeyouletter-fe' &&
+        github.event.pull_request.merged == true 
+      }}
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: install pnpm
+        run: npm i pnpm@latest -g
+
+      - name: Install Dependencies
+        run: |
+          pnpm install
+
+      - name: Create Release Pull Request
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm ci:version
+          commit: "chore: update versions"
+          title: "chore: update versions"
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - run: echo "${{ steps.changesets.outputs.publish }}"
+      - run: echo "${{ steps.changesets.outputs.hasChangesets }}"
+
+      - name: push tags if merged
+        run: |
+          git config --local user.email "young_pallete@naver.com"
+          git config --local user.name "JengYoung"
+
+      - run: pnpm changeset tag && git push origin --follow-tags --force
+        if: ${{ always() }}

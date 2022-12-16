@@ -1,8 +1,12 @@
-name: SetVersionsByChangesets
+name: Changesets
 
+# NOTE: Don't use 'skip ui' + changeset. It cause stop CI.
+# skip when doesn't have changesets
 on:
   push:
     branches: ['main']
+    paths:
+      - '.changeset/**.md'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -10,9 +14,15 @@ env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
 
+# skip when commit's scope name contains 'skip ci'
 jobs:
   release:
-    if: github.repository == 'seeyouletter/seeyouletter-fe'
+    if: >-
+      ${{
+        github.repository == 'seeyouletter/seeyouletter-fe' &&
+        !contains(github.event.head_commit.message, '(skip ci)') &&
+        !contains(github.event.head_commit.message, 'changeset-release/main')
+      }}
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -23,23 +33,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: webfactory/ssh-agent@v0.7.0
-        with:
-            ssh-private-key: ${{ secrets.SSH_AGENT_PRIVATE_KEY }}
 
       - name: install pnpm
         run: npm i pnpm@latest -g
 
       - name: Install Dependencies
-        run: pnpm install
+        run: |
+          pnpm install
 
       - name: Create Release Pull Request
+        id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm ci:version
-          commit: "chore(versioning): update versions"
-          title: "chore(versioning): update versions"
+          commit: "chore: update versions"
+          title: "chore: update versions"
           createGithubReleases: false
         env:
-          GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
-          
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
