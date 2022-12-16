@@ -1,4 +1,4 @@
-import { CustomTheme } from "@styles/globalTheme";
+import { CustomTheme } from '@styles/globalTheme';
 
 /**
  * @description
@@ -7,6 +7,6 @@ import { CustomTheme } from "@styles/globalTheme";
  *
  * @see: https://emotion.sh/docs/typescript#define-a-theme
  */
-declare module "@emotion/react" {
+declare module '@emotion/react' {
   export type Theme = CustomTheme;
 }

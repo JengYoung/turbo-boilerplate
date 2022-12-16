@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 export const globalStyle = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -123,7 +123,7 @@ export const globalStyle = css`
   blockquote:after,
   q:before,
   q:after {
-    content: "";
+    content: '';
     content: none;
   }
   table {

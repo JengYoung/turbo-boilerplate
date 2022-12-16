@@ -31,9 +31,7 @@
     "eslint": "^8.29.0",
     "eslint-config-custom": "workspace:*",
     "jest": "^29.3.1",
-    "prettier-config": "workspace:^1.0.0",
-    "stylelint": "^14.16.0",
-    "stylelint-config": "workspace:^1.0.0",
+    "prettier": "^2.8.1",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.3"
   },

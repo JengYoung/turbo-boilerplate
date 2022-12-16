@@ -1,5 +1,5 @@
 {
-  "name": "prettier-config",
+  "name": "prettier-config-custom",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,5 +12,8 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "prettier": "^2.8.1"
+  },
+  "peerDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0"
   }
 }

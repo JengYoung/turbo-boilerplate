@@ -1,15 +1,19 @@
-import React from "react";
-import { Button } from "@chakra-ui/react";
+import React from 'react';
+
+import { Button, VStack } from '@chakra-ui/react';
 
 interface ButtonPropsInterface {
-  size: "xs" | "sm" | "md" | "lg";
+  size: 'xs' | 'sm' | 'md' | 'lg';
   isLoading: boolean;
   children: React.ReactNode;
 }
 
-export const DefaultButton = ({
-  isLoading = false,
-  children,
-}: ButtonPropsInterface) => {
-  return <Button isLoading={isLoading}>{children}</Button>;
+export const DefaultButton = ({ size, isLoading = false, children }: ButtonPropsInterface) => {
+  return (
+    <Button isLoading={isLoading} size={size}>
+      {children}
+      <VStack>wefewwe</VStack>
+      <div></div>
+    </Button>
+  );
 };
